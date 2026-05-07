@@ -1,0 +1,79 @@
+schema_version: 1
+experiment:
+  experiment_id:
+  experiment_name:
+  pdf_path:
+  code_dir:
+  code_dir_state:
+  requirement_dir:
+  companion_files: []
+  status: initialized
+phase_status:
+  phase1_router:
+    status:
+    updated_at:
+    outputs: {}
+  phase2_requirement:
+    status:
+    updated_at:
+    outputs: {}
+  phase3_environment:
+    status:
+    updated_at:
+    outputs: {}
+  phase4_baseline:
+    status:
+    updated_at:
+    outputs: {}
+  phase5_implementation:
+    status:
+    updated_at:
+    outputs: {}
+  phase6_verification:
+    status:
+    updated_at:
+    outputs: {}
+  phase7_report:
+    status:
+    updated_at:
+    outputs: {}
+  phase8_ppt:
+    status:
+    updated_at:
+    outputs: {}
+requirements:
+  items: []
+provided_assets: []
+dataset_requirements:
+  name:
+  source_type:
+  required_files: []
+  local_assets: []
+  external_source_needed:
+  notes: []
+data_readiness:
+  status:
+  source_type:
+  source_paths: []
+  data_dir:
+  checked_by_command:
+  summary:
+runtime_profile: {}
+baseline_summary: {}
+implementation: {}
+verification:
+  status:
+  overall_passed:
+  metrics: []
+  command_ids: []
+  report_assets: []
+diagrams:
+  assets: []
+report:
+  claims: []
+  review: {}
+ppt:
+  brief_path:
+  slides: []
+  outputs: []
+open_issues: []

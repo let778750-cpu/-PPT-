@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验图表制作者"
+  short_description: "为实验报告和PPT制作可追踪的流程图、结构图和结果图。"
+  default_prompt: "使用 $experiment-diagram-maker 为实验报告或 PPT 制作流程图、结构图和结果图，并登记到 _workflow。"

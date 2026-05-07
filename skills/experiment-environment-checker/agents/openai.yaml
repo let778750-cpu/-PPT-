@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验环境核验器"
+  short_description: "核验实验运行环境并输出推荐解释器与环境结论。"
+  default_prompt: "使用 $experiment-environment-checker 检查实验运行环境，并输出推荐解释器、命令前缀和环境状态。"

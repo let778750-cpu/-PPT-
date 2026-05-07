@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验报告撰写器"
+  short_description: "基于已验证的实验结果和 _workflow 证据链，使用 LaTeX 模板生成实验报告。"
+  default_prompt: "使用 $experiment-report-writer 根据已验证的实验代码、训练结果和 _workflow 证据链，撰写并编译 LaTeX 实验报告；报告复核通过后继续进入 Phase 8 PPT。"

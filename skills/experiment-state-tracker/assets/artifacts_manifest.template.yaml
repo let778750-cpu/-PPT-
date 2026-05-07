@@ -1,0 +1,23 @@
+schema_version: 1
+artifacts: []
+artifact_kinds:
+  - source_code
+  - test_file
+  - environment_log
+  - training_log
+  - evaluation_log
+  - checkpoint
+  - metrics_json
+  - run_summary
+  - dataset_archive
+  - dataset_raw
+  - dataset_processed
+  - dataset_source_record
+  - data_preparation_log
+  - figure
+  - diagram_source
+  - diagram_export
+  - report_tex
+  - report_pdf
+  - ppt_brief
+  - ppt

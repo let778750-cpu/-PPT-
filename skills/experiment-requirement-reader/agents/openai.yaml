@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验要求解析器"
+  short_description: "从实验 PDF 和同目录数据资产中提取结构化要求摘要。"
+  default_prompt: "使用 $experiment-requirement-reader 读取实验 PDF 和同目录伴随数据资产，并在实现前生成结构化实验要求、数据来源和提交物摘要。"

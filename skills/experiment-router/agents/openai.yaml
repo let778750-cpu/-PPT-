@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验路由器"
+  short_description: "将实验请求匹配到正确的要求目录、PDF、伴随数据资产和代码工作区。"
+  default_prompt: "使用 $experiment-router 先定位目标实验、要求目录、对应 PDF、伴随数据资产和目标代码工作区，再进入后续实现阶段。"

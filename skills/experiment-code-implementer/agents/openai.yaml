@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验代码实现器"
+  short_description: "按实验要求实现结构化代码、数据准备、测试脚本并准备验证入口。"
+  default_prompt: "使用 $experiment-code-implementer 按实验要求和基线计划实现代码，采用标准实验代码布局，准备数据检查/准备命令，并准备测试、训练与评估入口。"

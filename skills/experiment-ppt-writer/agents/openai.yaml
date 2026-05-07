@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验PPT撰写器"
+  short_description: "在 Phase 8 基于已验证报告和证据链生成必交付实验PPT。"
+  default_prompt: "使用 $experiment-ppt-writer 作为 Phase 8 必做收尾阶段，基于已验证实验报告、指标和 _workflow 证据链生成实验 PPT。"

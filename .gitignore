@@ -1,0 +1,44 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Temporary/editor files
+.tmp/
+.vscode/
+*.tmp
+
+# LaTeX generated files
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+
+# Experiment data and model checkpoints
+code/work*/data/
+code/work*/outputs/*.pt
+code/work*/outputs/*.pth
+code/work*/outputs/run_*/
+
+# Environment files
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Claude Code internal
+.claude/
+.pytest_cache/
+
+# Large binary files
+*.zip
+*.npz
+*.h5
+*.pkl

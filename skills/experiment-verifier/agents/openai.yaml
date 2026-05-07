@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验验证器"
+  short_description: "检查结构与数据就绪性并执行正式测试、训练与评估。"
+  default_prompt: "使用 $experiment-verifier 检查代码结构合规性和数据就绪性，运行实验的正式测试、训练和评估，并验证指标是否达到 PDF 要求。"
