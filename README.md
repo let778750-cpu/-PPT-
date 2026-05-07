@@ -2,6 +2,14 @@
 
 基于 Claude Code 的深度学习课程实验自动化流水线。包含 8 阶段 workflow、11 个 skill，可自动完成从实验定位到代码实现、训练评估、报告撰写、PPT 生成的全流程。
 
+> **适用范围说明**
+>
+> 本项目最初是为**中国科学院大学（UCAS）深度学习课程**的实验作业设计的，因此部分 skill 中包含与该校课程相关的硬编码配置（如特定的目录命名、LaTeX 模板命令、Conda 环境名等）。
+>
+> 如果你不是国科大学生，**本项目的核心流水线架构和方法论仍然完全可用**——只需根据下方 [复用改造指南](#复用改造指南) 修改对应的 skill 文件即可适配你自己的学校和课程。
+>
+> 简而言之：**框架和思路是通用的，涉及具体学校/课程的配置是可替换的。**
+
 ## 功能概览
 
 | 阶段 | Skill | 说明 |
@@ -232,12 +240,134 @@ Claude Code 会自动按 8 阶段流水线推进：定位实验 → 解析要求
 
 每个实验维护 `_workflow/` 状态目录（`workflow_state.yaml`, `artifacts_manifest.yaml`, `execution_log.md`），确保全程可追溯。
 
-## 自定义与扩展
+## 复用改造指南
 
-- **添加新的实验类型**：在 `skills/` 下创建新 skill，按 `workflow.md` 的阶段接口对接
-- **更换报告模板**：替换 `实验报告模板_latex/` 目录内容，确保支持 xelatex 编译
-- **更换 PPT 工具**：替换 `PPT生成skill/` 目录，更新 `workflow.md` Phase 8 中的 skill 引用
-- **修改阶段流程**：编辑 `workflow.md` 调整阶段顺序和 skill 加载
+本项目 11 个 skill 按与国科大课程的耦合程度分为三档。下表列出了每个 skill 的耦合等级、包含的学校特定内容，以及你改造时需要做什么。
+
+### 耦合程度总览
+
+| 耦合等级 | Skill | 学校特定内容 | 改造工作量 |
+|----------|-------|-------------|-----------|
+| **高** | experiment-report-writer | `UCASReport.sty` 模板、`\setUCAS*` 封面命令、ctexart 字体配置 | 需替换整个 LaTeX 模板层 |
+| **中** | experiment-router | 目录名 `实验要求（来自国科大在线）/`、中文标点文件名规则 | 替换目录名和文件名匹配逻辑 |
+| **中** | experiment-code-implementer | 数据资产路径 `实验要求（来自国科大在线）/实验N要求/`、`work1 code` 参考实现 | 替换路径引用 |
+| **低** | experiment-state-tracker | `code/workN code/` 路径模式、`实验报告/实验N/` 输出路径 | 替换路径常量 |
+| **低** | experiment-environment-checker | Conda 环境名 `python_cuda`、Python 版本 | 改为你自己的环境名 |
+| **低** | experiment-diagram-maker | 图表输出路径 `实验报告/实验N/figures/` | 替换输出路径 |
+| **低** | experiment-report-reviewer | `\experimentsectionpage` 命令检查 | 适配你的 LaTeX 模板命令 |
+| **低** | experiment-ppt-writer | 课程名"深度学习"、受众"课程教师、助教" | 替换课程名和目标受众 |
+| **极低** | experiment-requirement-reader | 描述文字中提到"国科大" | 仅改描述文字即可 |
+| **极低** | experiment-code-baseline | 一处 `work1 code` 作为布局示例 | 仅改示例路径即可 |
+| **极低** | experiment-verifier | `code/workN code/` 路径模式 | 仅改路径即可 |
+
+### 逐 Skill 改造要点
+
+#### experiment-report-writer（改造量最大）
+
+这是与国科大耦合最深的 skill。它直接调用了 `UCASReport.sty` 提供的封面命令：
+
+```
+\setUCASCoverTitle{...}
+\setUCASReportTitle{...}
+\setUCASCourseName{...}
+\setUCASAuthorName{...}
+\setUCASStudentID{...}
+\setUCASCollege{...}
+\setUCASAdminClass{...}
+\setUCASTrainingUnit{...}
+```
+
+**改造方式：**
+1. 将 `实验报告模板_latex/` 替换为你学校的 LaTeX 报告模板
+2. 打开 `skills/experiment-report-writer/SKILL.md`，找到"封面命令"相关的章节
+3. 将上述 `\setUCAS*` 命令替换为你模板中对应的封面/元信息命令
+4. 如果你的模板使用不同的文档类（如 `article` 而非 `ctexart`），还需调整字体配置和编译命令
+5. 报告的四段式结构（实验内容 → 理论基础 → 算法设计 → 实验总结）是通用的学术报告结构，通常可以直接保留
+
+#### experiment-router（中等改造量）
+
+此 skill 硬编码了国科大在线平台的目录结构：
+
+```
+实验要求（来自国科大在线）/     ← 实验要求根目录
+└── 实验N要求/                   ← 具体实验的要求子目录
+```
+
+**改造方式：**
+1. 在 SKILL.md 中搜索 `实验要求（来自国科大在线）`，替换为你自己的实验要求目录名（如 `assignments/` 或 `实验要求/`）
+2. 如果你的文件命名不含中文全角符号，删除关于 `+`、`：` 等中文标点的匹配规则
+3. 工作区命名格式 `code/workN code/`（含空格和"code"后缀）如果你觉得不习惯，可统一改为 `code/expN/` 等格式——但需要同步修改所有其他 skill 中的路径引用和 `CLAUDE.md`
+
+#### experiment-code-implementer（中等改造量）
+
+引用了国科大特定的数据资产路径和参考实现：
+
+```
+实验要求（来自国科大在线）/实验N要求/    ← 伴随数据资产路径
+work1 code                               ← 被当作标准布局参考
+```
+
+**改造方式：**
+1. 替换数据资产路径为你的实验要求目录
+2. 如果你有自己的"标准实现"作为参考，修改对应引用；如果没有，删除该参考即可
+3. 代码布局规范（README、train/evaluate 脚本、package 目录、tests/、outputs/、figures/、data/）是通用的工程实践，建议保留
+
+#### experiment-environment-checker（低改造量）
+
+在"核验建议"章节中写死了 Conda 环境名：
+
+```
+优先检查 Conda 环境 `python_cuda` 与 Python `3.12.12`
+```
+
+**改造方式：** 改为你自己的环境名和 Python 版本，或者改为"从 `CLAUDE.md` 的运行环境部分读取"（当前版本已做此处理）。
+
+#### experiment-ppt-writer（低改造量）
+
+在内容模板中包含课程特定信息：
+
+```
+课程名称（如'深度学习'）
+目标受众：课程教师、助教
+```
+
+**改造方式：** 替换为你自己的课程名和目标受众。
+
+#### 其余 skill（极低改造量）
+
+以下 skill 只在描述文字或示例路径中提到国科大相关内容，改动极小：
+
+- **experiment-requirement-reader**：仅描述中提到"国科大"，核心逻辑（PDF 解析、结构化提取）完全通用
+- **experiment-code-baseline**：仅一处用 `work1 code` 作布局示例
+- **experiment-state-tracker**：路径模式 `code/workN code/` 是目录约定而非学校绑定，改路径即可
+- **experiment-diagram-maker**：输出路径 `实验报告/实验N/figures/` 可按需替换
+- **experiment-report-reviewer**：检查 `\experimentsectionpage` 命令是否正确——如果你换了模板，改为检查你模板中的对应命令
+- **experiment-verifier**：核心验证逻辑（数据就绪检查、训练执行、指标比对）完全通用
+
+### 最小改造清单
+
+如果你只想快速跑起来，最少需要改动以下内容：
+
+1. **`CLAUDE.md`**：替换"运行环境"部分的 Python 路径、Conda 环境名
+2. **`experiment-router/SKILL.md`**：替换 `实验要求（来自国科大在线）/` 为你的实验要求目录名
+3. **`experiment-report-writer/SKILL.md`**：替换 `\setUCAS*` 封面命令为你模板的对应命令
+4. **`实验报告模板_latex/`**：放入你学校的 LaTeX 报告模板
+5. **`PPT生成skill/`**：放入 ppt-master 或其他 PPT 生成工具
+
+完成以上 5 处修改后，整个流水线即可用于你自己的课程实验。
+
+### 目录路径统一替换
+
+如果你想把所有中文目录名改为英文（或你习惯的命名），需要在以下文件中同步替换：
+
+| 原路径 | 涉及文件 |
+|--------|---------|
+| `实验要求（来自国科大在线）/` | `CLAUDE.md`, `experiment-router/SKILL.md`, `experiment-code-implementer/SKILL.md` |
+| `实验报告模板_latex/` | `CLAUDE.md`, `experiment-diagram-maker/SKILL.md`, `experiment-report-writer/SKILL.md` |
+| `实验报告/实验N/` | `experiment-state-tracker/SKILL.md`, `experiment-diagram-maker/SKILL.md` |
+| `code/workN code/` | `CLAUDE.md`, `workflow.md`, 以及所有包含该路径的 skill |
+| `PPT生成skill/` | `CLAUDE.md`, `workflow.md`, `experiment-ppt-writer/SKILL.md` |
+| `PPT/实验N/` | `experiment-ppt-writer/SKILL.md` |
 
 ## 致谢
 
