@@ -1,0 +1,44 @@
+%!TeX program = xelatex
+\documentclass[12pt,hyperref,a4paper,UTF8]{ctexart}
+\usepackage{UCASReport}
+
+% 封面信息可按具体实验直接修改
+\setUCASCoverTitle{实验报告}
+\setUCASReportTitle{实验名称}
+\setUCASCourseName{课程名称}
+\setUCASAuthorName{姓名}
+\setUCASStudentID{学号}
+\setUCASCollege{学院}
+\setUCASAdminClass{行政班级}
+\setUCASTrainingUnit{培养单位}
+
+% 每个一级部分单独从新页开始，标题左对齐，黑体小三
+\newcommand{\experimentsectionpage}[1]{%
+    \clearpage
+    \thispagestyle{fancy}
+    \noindent{\heiti\zihao{-3} #1}\par
+    \vspace{1em}
+}
+
+\begin{document}
+
+\cover
+\thispagestyle{empty}
+\setcounter{page}{0}
+
+% 如需目录，可取消下一行注释
+% \tableofcontents
+
+\experimentsectionpage{一、实验内容}
+% 在此填写实验内容
+
+\experimentsectionpage{二、实验原理}
+% 在此填写实验原理
+
+\experimentsectionpage{三、实验算法设计}
+% 在此填写实验算法设计
+
+\experimentsectionpage{四、实验总结}
+% 在此填写实验总结
+
+\end{document}

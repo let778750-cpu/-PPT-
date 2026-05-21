@@ -1,0 +1,400 @@
+% =============================================================================
+% references.bib — UCAS 深度学习实验报告引用格式标准模板
+% =============================================================================
+%
+% 【用途】
+%   本文件是项目中所有实验报告参考文献的权威格式参照。
+%   experiment-report-writer 和 experiment-report-reviewer 两个 skill
+%   通过引用本文件来统一引用格式，不在 skill 内部硬编码格式规则。
+%
+% 【使用方式】
+%   1. 撰写报告时，根据文献类型找到下方对应条目，参照其格式填写
+%   2. 所有条目必须使用真实、权威、可在 Google Scholar 检索到的文献
+%   3. 正文中通过 \cite{key} 引用，确保每条文献至少被引用一次
+%
+% 【格式总则】（参考文献列表标准格式）
+%   - 作者数量规则（参考文献列表）：
+%     · ≤ 3 位作者：全部列出，最后一位前用 and 连接
+%     · > 3 位作者：列出前 3 位作者，后接 ", et al."
+%   - 作者名格式：使用全名（如 Yann LeCun），不用缩写（非 Y. LeCun）
+%   - 标题：sentence case（仅首单词首字母大写，专有名词除外）
+%   - 期刊/会议名：使用 \emph{} 斜体
+%   - 条目末尾以英文句点 . 结尾
+%   - BibTeX key 命名：第一作者姓+年份+简短关键词（如 lecun1998gradient）
+%
+% 【注意】本文件 BibTeX 条目保留完整作者列表作为数据源。
+% 参考文献列表中的截断规则仅在 .tex 文件的 \bibitem 中体现。
+% 详见文件末尾"thebibliography 条目格式"附录。
+%
+% =============================================================================
+
+
+% -----------------------------------------------------------------------------
+% 1. 期刊论文 @article
+%    适用：发表在学术期刊上的论文
+%    必填字段：author, title, journal, volume, pages, year
+%    可选字段：number, month, doi, publisher
+% -----------------------------------------------------------------------------
+@article{lecun1998gradient,
+  author    = {Yann LeCun and L\'{e}on Bottou and Yoshua Bengio and Patrick Haffner},
+  title     = {Gradient-based learning applied to document recognition},
+  journal   = {\emph{Proceedings of the IEEE}},
+  volume    = {86},
+  number    = {11},
+  pages     = {2278--2324},
+  year      = {1998},
+  doi       = {10.1109/5.726791}
+}
+
+@article{ioffe2015batch,
+  author    = {Sergey Ioffe and Christian Szegedy},
+  title     = {Batch normalization: Accelerating deep network training by reducing internal covariate shift},
+  journal   = {\emph{arXiv preprint arXiv:1502.03167}},
+  year      = {2015}
+}
+
+
+% -----------------------------------------------------------------------------
+% 2. 会议论文 @inproceedings
+%    适用：发表在学术会议上的论文（CS 领域最常见）
+%    必填字段：author, title, booktitle, pages, year
+%    可选字段：organization, doi, address, month
+% -----------------------------------------------------------------------------
+@inproceedings{he2016deep,
+  author    = {Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+  title     = {Deep residual learning for image recognition},
+  booktitle = {\emph{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}},
+  pages     = {770--778},
+  year      = {2016}
+}
+
+@inproceedings{paszke2019pytorch,
+  author    = {Adam Paszke and Sam Gross and Francisco Massa and Adam Lerer and James Bradbury and Gregory Chanan and Trevor Killeen and Zeming Lin and Natalia Gimelshein and Luca Antiga and Alban Desmaison and Andreas Kopf and Edward Yang and Zachary DeVito and Martin Raison and Alykhan Tejani and Sasank Chilamkurthy and Benoit Steiner and Lu Fang and Junjie Bai and Soumith Chintala},
+  title     = {PyTorch: An imperative style, high-performance deep learning library},
+  booktitle = {\emph{Advances in Neural Information Processing Systems (NeurIPS)}},
+  pages     = {8024--8035},
+  year      = {2019}
+}
+
+@inproceedings{nair2010rectified,
+  author    = {Vinod Nair and Geoffrey E. Hinton},
+  title     = {Rectified linear units improve restricted Boltzmann machines},
+  booktitle = {\emph{Proceedings of the International Conference on Machine Learning (ICML)}},
+  pages     = {807--814},
+  year      = {2010}
+}
+
+@inproceedings{loshchilov2019decoupled,
+  author    = {Ilya Loshchilov and Frank Hutter},
+  title     = {Decoupled weight decay regularization},
+  booktitle = {\emph{Proceedings of the International Conference on Learning Representations (ICLR)}},
+  year      = {2019}
+}
+
+
+% -----------------------------------------------------------------------------
+% 3. 书籍 @book
+%    适用：完整出版的书籍
+%    必填字段：author, title, publisher, year
+%    可选字段：address, edition, isbn, volume, series, doi
+% -----------------------------------------------------------------------------
+@book{goodfellow2016deep,
+  author    = {Ian Goodfellow and Yoshua Bengio and Aaron Courville},
+  title     = {Deep learning},
+  publisher = {MIT Press},
+  year      = {2016},
+  address   = {Cambridge, MA},
+  isbn      = {978-0-262-03561-3}
+}
+
+@book{bishop2006pattern,
+  author    = {Christopher M. Bishop},
+  title     = {Pattern recognition and machine learning},
+  publisher = {Springer},
+  year      = {2006},
+  address   = {New York, NY},
+  isbn      = {978-0-387-31073-2}
+}
+
+
+% -----------------------------------------------------------------------------
+% 4. 书籍章节 @incollection
+%    适用：收录于某本书中的独立章节
+%    必填字段：author, title, booktitle, publisher, year
+%    可选字段：editor, volume, pages, address, doi
+% -----------------------------------------------------------------------------
+@incollection{krizhevsky2012imagenet,
+  author    = {Alex Krizhevsky and Ilya Sutskever and Geoffrey E. Hinton},
+  title     = {ImageNet classification with deep convolutional neural networks},
+  booktitle = {\emph{Advances in Neural Information Processing Systems}},
+  publisher = {Curran Associates, Inc.},
+  pages     = {1097--1105},
+  year      = {2012}
+}
+
+
+% -----------------------------------------------------------------------------
+% 5. 博士学位论文 @phdthesis
+%    适用：博士学位论文
+%    必填字段：author, title, school, year
+%    可选字段：address, type, month
+% -----------------------------------------------------------------------------
+@phdthesis{smith2022neural,
+  author    = {John Smith},
+  title     = {Neural network approaches to natural language understanding},
+  school    = {University of Chinese Academy of Sciences},
+  year      = {2022},
+  address   = {Beijing, China}
+}
+
+
+% -----------------------------------------------------------------------------
+% 6. 硕士学位论文 @mastersthesis
+%    适用：硕士学位论文
+%    必填字段：author, title, school, year
+%    可选字段：address, type, month
+% -----------------------------------------------------------------------------
+@mastersthesis{zhang2023attention,
+  author    = {Wei Zhang},
+  title     = {Attention mechanism improvements for image classification},
+  school    = {University of Chinese Academy of Sciences},
+  year      = {2023},
+  address   = {Beijing, China}
+}
+
+
+% -----------------------------------------------------------------------------
+% 7. 技术报告 @techreport
+%    适用：企业或研究机构发布的技术报告
+%    必填字段：author, title, institution, year
+%    可选字段：number, type, address, month
+% -----------------------------------------------------------------------------
+@techreport{brown2020language,
+  author      = {Tom Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared D. Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel Ziegler and Jeffrey Wu and Clemens Winter and Chris Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+  title       = {Language models are few-shot learners},
+  institution = {OpenAI},
+  year        = {2020},
+  number      = {arXiv:2005.14165},
+  type        = {Technical Report}
+}
+
+
+% -----------------------------------------------------------------------------
+% 8. 预印本 / arXiv @article（复用 article 类型）
+%    适用：尚未正式发表、仅发布在 arXiv 等预印本平台的论文
+%    注意：journal 字段填写 arXiv preprint arXiv:XXXX.XXXXX
+%          如果后续正式发表，应更新为对应的 @article 或 @inproceedings
+% -----------------------------------------------------------------------------
+@article{vaswani2017attention,
+  author    = {Ashish Vaswani and Noam Shazeer and Niki Parmar and Jakob Uszkoreit and Llion Jones and Aidan N. Gomez and Lukasz Kaiser and Illia Polosukhin},
+  title     = {Attention is all you need},
+  journal   = {\emph{arXiv preprint arXiv:1706.03762}},
+  year      = {2017}
+}
+
+@article{devlin2019bert,
+  author    = {Jacob Devlin and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+  title     = {{BERT}: Pre-training of deep bidirectional transformers for language understanding},
+  journal   = {\emph{arXiv preprint arXiv:1810.04805}},
+  year      = {2019}
+}
+
+
+% -----------------------------------------------------------------------------
+% 9. 在线资源 / 网页 / 官方文档 @misc
+%    适用：框架文档、API 文档、博客文章、在线教程等
+%    必填字段：author, title, year, howpublished
+%    可选字段：note, url, month
+%    注意：howpublished 使用 \url{} 包裹网址
+%          note 中注明访问日期（格式：Accessed: YYYY-MM-DD）
+% -----------------------------------------------------------------------------
+@misc{pytorch2023documentation,
+  author       = {{PyTorch Team}},
+  title        = {PyTorch documentation},
+  howpublished = {\url{https://pytorch.org/docs/stable/}},
+  year         = {2023},
+  note         = {Accessed: 2026-04-27}
+}
+
+@misc{torchvision2023documentation,
+  author       = {Torchvision Contributors},
+  title        = {Torchvision: Datasets, transforms and models for computer vision},
+  howpublished = {\url{https://pytorch.org/vision/stable/}},
+  year         = {2023},
+  note         = {Accessed: 2026-04-27}
+}
+
+
+% -----------------------------------------------------------------------------
+% 10. 软件包 / 代码库 @misc
+%     适用：开源软件、Python 包、GitHub 仓库等
+%     必填字段：author, title, year
+%     可选字段：howpublished, note, url
+%     注意：如果该软件有正式的会议论文（如 PyTorch），
+%           优先引用 @inproceedings 条目，而非此 @misc
+% -----------------------------------------------------------------------------
+@misc{wolf2020transformers,
+  author       = {Thomas Wolf and Lysandre Debut and Victor Sanh and Julien Chaumond and Clement Delangue and Anthony Moi and Pierric Cistac and Tim Rault and Rémi Louf and Morgan Funtowicz and Jamie Brew},
+  title        = {HuggingFace's transformers: State-of-the-art natural language processing},
+  year         = {2020},
+  howpublished = {\url{https://github.com/huggingface/transformers}}
+}
+
+
+% -----------------------------------------------------------------------------
+% 11. 数据集 @misc
+%     适用：学术数据集（MNIST、CIFAR、ImageNet 等）
+%     必填字段：author, title, year
+%     可选字段：howpublished, note, url
+%     注意：如果数据集有对应的正式论文，优先引用论文条目
+% -----------------------------------------------------------------------------
+@misc{lecun1998mnist,
+  author       = {Yann LeCun and Corinna Cortes and Christopher J. C. Burges},
+  title        = {The {MNIST} database of handwritten digits},
+  year         = {1998},
+  howpublished = {\url{http://yann.lecun.com/exdb/mnist/}},
+  note         = {Accessed: 2026-04-27}
+}
+
+@misc{krizhevsky2009cifar,
+  author       = {Alex Krizhevsky},
+  title        = {Learning multiple layers of features from tiny images},
+  year         = {2009},
+  howpublished = {Technical Report, University of Toronto}
+}
+
+
+% -----------------------------------------------------------------------------
+% 12. 标准 / 规范 @techreport
+%     适用：IEEE、ISO、W3C 等组织发布的技术标准
+%     必填字段：author, title, institution, year
+%     可选字段：number, type
+% -----------------------------------------------------------------------------
+@techreport{ieee7542019,
+  author      = {{IEEE}},
+  title       = {IEEE standard for floating-point arithmetic},
+  institution = {IEEE},
+  year        = {2019},
+  number      = {IEEE 754-2019},
+  type        = {Standard}
+}
+
+
+% =============================================================================
+% 附录：BibTeX 字段速查表
+% =============================================================================
+%
+% | 字段           | 含义                   | 适用条目                          |
+% |----------------|------------------------|-----------------------------------|
+% | author         | 作者（用 and 分隔）     | 所有                              |
+% | title          | 标题                   | 所有                              |
+% | journal        | 期刊名                 | article                           |
+% | booktitle      | 会议名或所属书名        | inproceedings, incollection       |
+% | publisher      | 出版社                 | book, incollection                |
+% | year           | 年份                   | 所有                              |
+% | month          | 月份                   | 所有                              |
+% | volume         | 卷号                   | article, book                     |
+% | number         | 期号                   | article                           |
+% | pages          | 页码（用 -- 表示范围）  | article, inproceedings, incollection |
+% | doi            | DOI 标识符             | 所有                              |
+% | isbn           | ISBN                   | book                              |
+% | url            | 链接                   | 所有                              |
+% | address        | 出版地/地址            | book, inproceedings, phdthesis    |
+% | edition        | 版本                   | book                              |
+% | series         | 丛书系列               | book, inproceedings               |
+% | editor         | 编辑                   | book, incollection                |
+% | institution    | 发布机构               | techreport                        |
+% | school         | 授予学位的学校         | phdthesis, mastersthesis          |
+% | type           | 报告/论文类型           | techreport, phdthesis             |
+% | howpublished   | 发布方式（含 \url{}）   | misc                              |
+% | note           | 备注（含访问日期）      | 所有                              |
+% | organization   | 会议组织者              | inproceedings                     |
+% | abstract       | 摘要                   | 所有                              |
+% | keywords       | 关键词                 | 所有                              |
+%
+%
+% =============================================================================
+% 附录：thebibliography 条目格式（报告 .tex 中实际使用的格式）
+% =============================================================================
+%
+% 当报告中使用 \begin{thebibliography} 手写条目时，各类型的渲染格式如下：
+%
+% 【作者数量规则】
+%   ≤ 3 位作者 → 全部列出，最后一位前用 and
+%   > 3 位作者 → 列出前 3 位，后接 ", et al."
+%
+% 【期刊论文】（≤3 作者）
+% \bibitem{key}
+% 全名作者1, 全名作者2, and 全名作者3.
+% Sentence case title.
+% \emph{Journal}, volume(number):pages, Year.
+%
+% 【期刊论文】（>3 作者）
+% \bibitem{key}
+% 全名作者1, 全名作者2, 全名作者3, et al.
+% Sentence case title.
+% \emph{Journal}, volume(number):pages, Year.
+%
+% 【会议论文】（≤3 作者）
+% \bibitem{key}
+% 全名作者1 and 全名作者2.
+% Sentence case title.
+% \emph{Conference}, pages, Year.
+%
+% 【会议论文】（>3 作者）
+% \bibitem{key}
+% 全名作者1, 全名作者2, 全名作者3, et al.
+% Sentence case title.
+% \emph{Conference}, pages, Year.
+%
+% 【书籍】
+% \bibitem{key}
+% 全名作者1 and 全名作者2.
+% \emph{Sentence case title}, edition.
+% Publisher, Address, Year.
+%
+% 【学位论文】
+% \bibitem{key}
+% 全名作者.
+% Sentence case title.
+% Ph.D. thesis (或 Master's thesis), School, Address, Year.
+%
+% 【技术报告】（>3 作者时截断为前3 + et al.）
+% \bibitem{key}
+% 全名作者1, 全名作者2, 全名作者3, et al.
+% Sentence case title.
+% Technical Report number, Institution, Year.
+%
+% 【预印本 / arXiv】（>3 作者时截断为前3 + et al.）
+% \bibitem{key}
+% 全名作者1, 全名作者2, 全名作者3, et al.
+% Sentence case title.
+% \emph{arXiv preprint arXiv:XXXX.XXXXX}, Year.
+%
+% 【在线资源 / 官方文档】
+% \bibitem{key}
+% 作者或组织名.
+% Description.
+% \url{https://...}, Year.
+% Accessed: YYYY-MM-DD.
+%
+% 【软件包 / 代码库】
+% \bibitem{key}
+% 全名作者1, 全名作者2, and 全名作者N.
+% Title.
+% \url{https://github.com/...}, Year.
+%
+% 【数据集】
+% \bibitem{key}
+% 全名作者1 and 全名作者2.
+% Title.
+% \url{https://...}, Year.
+% Accessed: YYYY-MM-DD.
+%
+% 【标准 / 规范】
+% \bibitem{key}
+% 组织名.
+% Full standard title.
+% Standard number, Organization, Year.
+%
+% =============================================================================

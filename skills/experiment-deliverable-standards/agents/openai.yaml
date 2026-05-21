@@ -1,0 +1,4 @@
+interface:
+  display_name: "实验交付质量标准"
+  short_description: "统一实验报告、图表、PPT、提交目录和压缩包的最终质量门槛。"
+  default_prompt: "使用 $experiment-deliverable-standards 检查并约束实验报告、流程图、PPT 和项目提交目录，确保达到用户确认过的交付标准。"

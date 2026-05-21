@@ -64,7 +64,7 @@ notes:
 
 ## 核验建议
 
-- 在当前项目中，优先检查用户配置的 Conda 环境（参见 `CLAUDE.md` 中的 `运行环境` 部分）。
+- 在当前项目中，优先检查 Conda 环境 `python_cuda` 与 Python `3.12.12`。
 - 如果怀疑 `AppData\\Roaming` 下的 user-site 包覆盖了 Conda 环境，优先考虑使用 `-s` 禁用 user-site。
 - 如果代码目录中已经提供 `check_environment.py`，优先复用现有检查逻辑，而不是重复发明一套检测方式。
 - 如果 `code_dir_state` 为 `to_create`，则环境核验只做系统级检查，不要求代码目录内文件必须存在。

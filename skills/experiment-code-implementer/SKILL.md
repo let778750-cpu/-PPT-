@@ -130,6 +130,7 @@ implementation_result:
 
 实现要求：
 
+- 如果图像描述实验明确要求 MSCOCO，应优先使用官方 MSCOCO captions / instances 标注和官方图像 URL。完整数据过大时，可以构建官方采样子集，但必须固定随机种子、记录 train/val/test 图像数和 caption 数、保证验证集与测试集图像互斥，并在 README、报告和 `_workflow` 中如实说明。
 - 从零实现时优先提供 `prepare_data_<task>.py` 或 `check_data_<task>.py`。至少要有一个命令能在正式训练前确认数据目录、样本数、类别/字段和关键文件存在。
 - 本地伴随数据应复制或解压到 `code/workN code/data/` 下的清晰目录，如 `data/raw/`、`data/processed/`；原始文件路径和 sha256 应登记到 manifest。
 - 训练脚本和评估脚本必须支持离线运行参数，例如 `--no-download` 或等价开关。

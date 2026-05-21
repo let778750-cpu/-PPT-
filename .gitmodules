@@ -1,0 +1,6 @@
+[submodule "PPT生成skill"]
+	path = PPT生成skill
+	url = https://github.com/hugohe3/ppt-master.git
+[submodule "报告生成skill/UCAS-templates"]
+	path = 报告生成skill/UCAS-templates
+	url = https://github.com/Chengyue-Lu/UCAS-templates.git

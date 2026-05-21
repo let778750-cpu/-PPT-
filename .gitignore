@@ -1,12 +1,12 @@
 # Python caches
 __pycache__/
 *.py[cod]
-*.pyo
 
 # Temporary/editor files
 .tmp/
 .vscode/
 *.tmp
+_tmp_preview/
 
 # LaTeX generated files
 *.aux
@@ -14,31 +14,28 @@ __pycache__/
 *.out
 *.synctex.gz
 *.toc
-*.bbl
-*.blg
-*.fdb_latexmk
-*.fls
 
-# Experiment data and model checkpoints
-code/work*/data/
-code/work*/outputs/*.pt
-code/work*/outputs/*.pth
-code/work*/outputs/run_*/
-
-# Environment files
-.env
-.env.*
-
-# OS files
-.DS_Store
-Thumbs.db
+# LaTeX report template - generated outputs
+实验报告模板_latex/main.pdf
+实验报告模板_latex/main.synctex.gz
 
 # Claude Code internal
 .claude/
-.pytest_cache/
 
-# Large binary files
-*.zip
-*.npz
-*.h5
-*.pkl
+# Experiment outputs (personal data, not for public repo)
+code/
+projects/
+实验报告/
+PPT/
+项目提交/
+项目提交（新）/
+
+# Course-specific requirements
+实验要求（来自国科大在线）/
+
+# Personal files
+AI 销售赋能生态系统.pptx
+
+# PPT skill generated projects
+PPT生成skill/projects/
+

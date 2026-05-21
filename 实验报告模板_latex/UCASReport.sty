@@ -1,0 +1,179 @@
+\ProvidesPackage{UCASReport}[2026/04/22 Experiment report template]
+
+\newif\ifucasfullcover
+\ucasfullcoverfalse
+\DeclareOption{full}{\ucasfullcovertrue}
+\DeclareOption{reduced}{\ucasfullcoverfalse}
+\ProcessOptions\relax
+
+\RequirePackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=2.50cm]{geometry}
+\RequirePackage[unicode=true,colorlinks=true,urlcolor=blue,linkcolor=blue,bookmarksnumbered=true]{hyperref}
+\RequirePackage{latexsym,amssymb,amsmath,amsbsy,amsopn,amstext,amsthm,amsxtra,bm,calc,ifpdf}
+\RequirePackage{graphicx}
+\RequirePackage{enumerate}
+\RequirePackage{fancyhdr}
+\RequirePackage{listings}
+\RequirePackage{multirow}
+\RequirePackage{makeidx}
+\RequirePackage{xcolor}
+\RequirePackage{subfigure}
+\RequirePackage{pythonhighlight}
+\RequirePackage{tcolorbox}
+\RequirePackage{fontawesome}
+
+\renewcommand{\abstractname}{\textbf{\large {摘要}}}
+
+\makeatletter
+\newcommand\dlmu[2][4cm]{\hskip1pt\underline{\hb@xt@ #1{\hss#2\hss}}\hskip3pt}
+\makeatother
+
+\def\equationautorefname{公式}
+\def\footnoteautorefname{脚注}
+\def\itemautorefname{条目}
+\def\figureautorefname{图}
+\def\tableautorefname{表}
+\def\partautorefname{部分}
+\def\appendixautorefname{附录}
+\def\chapterautorefname{章}
+\def\sectionautorefname{节}
+\def\subsectionautorefname{小节}
+\def\subsubsectionautorefname{小小节}
+\def\paragraphautorefname{段落}
+\def\subparagraphautorefname{子段落}
+\def\FancyVerbLineautorefname{行}
+\def\theoremautorefname{定理}
+
+\newtheorem{Theorem}{定理}[section]
+\newtheorem{Lemma}[Theorem]{引理}
+\newtheorem{Corollary}[Theorem]{推论}
+\newtheorem{Proposition}[Theorem]{命题}
+\newtheorem{Definition}[Theorem]{定义}
+\newtheorem{Example}[Theorem]{例}
+
+\newcommand{\reference}{
+\bibliographystyle{unsrt}
+\begin{center}
+    \bibliography{reference}
+\end{center}
+}
+
+\newcommand{\tbox}[1]{
+\begin{center}
+\begin{tcolorbox}[colback=gray!10,
+                  colframe=black,
+                  width=8cm,
+                  arc=1mm,
+                  auto outer arc,
+                  boxrule=0.5pt]
+{#1}
+\end{tcolorbox}
+\end{center}
+}
+
+\setlength{\headheight}{15pt}
+\fancypagestyle{ucasreportstyle}{
+    \fancyhf{}
+    \fancyhead[L]{}
+    \fancyhead[C]{\fangsong 深度学习实验报告}
+    \fancyhead[R]{}
+    \fancyfoot[L]{}
+    \fancyfoot[C]{\thepage}
+    \fancyfoot[R]{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+\pagestyle{ucasreportstyle}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[L]{}
+    \fancyhead[C]{\fangsong 深度学习实验报告}
+    \fancyhead[R]{}
+    \fancyfoot[L]{}
+    \fancyfoot[C]{\thepage}
+    \fancyfoot[R]{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+\newcommand{\UCASCoverTitle}{实验报告}
+\newcommand{\UCASReportTitle}{实验名称}
+\newcommand{\UCASCourseName}{在此填写课程名称}
+\newcommand{\UCASAuthorName}{在此填写姓名}
+\newcommand{\UCASStudentID}{在此填写学号}
+\newcommand{\UCASCollege}{在此填写学院}
+\newcommand{\UCASAdminClass}{在此填写行政班级}
+\newcommand{\UCASTrainingUnit}{在此填写培养单位}
+
+\newcommand{\setUCASCoverTitle}[1]{\renewcommand{\UCASCoverTitle}{#1}}
+\newcommand{\setUCASReportTitle}[1]{\renewcommand{\UCASReportTitle}{#1}}
+\newcommand{\setUCASCourseName}[1]{\renewcommand{\UCASCourseName}{#1}}
+\newcommand{\setUCASAuthorName}[1]{\renewcommand{\UCASAuthorName}{#1}}
+\newcommand{\setUCASStudentID}[1]{\renewcommand{\UCASStudentID}{#1}}
+\newcommand{\setUCASCollege}[1]{\renewcommand{\UCASCollege}{#1}}
+\newcommand{\setUCASAdminClass}[1]{\renewcommand{\UCASAdminClass}{#1}}
+\newcommand{\setUCASTrainingUnit}[1]{\renewcommand{\UCASTrainingUnit}{#1}}
+
+\newcommand{\UCASReducedCoverAuthor}{
+    \vspace{1cm}
+    \kaishu\Large 姓名\ \dlmu[11cm]{\UCASAuthorName} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 培养单位\ \dlmu[11cm]{\UCASTrainingUnit}
+}
+
+\newcommand{\UCASFullCoverAuthor}{
+    \vspace{0.5cm}
+    \kaishu\Large 课程名称\ \dlmu[9cm]{\UCASCourseName} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 姓名\ \dlmu[9cm]{\UCASAuthorName} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 学号\ \dlmu[9cm]{\UCASStudentID} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 学院\ \dlmu[9cm]{\UCASCollege} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 行政班级\ \dlmu[9cm]{\UCASAdminClass} \qquad \\
+    \vspace{0.5cm}
+    \kaishu\Large 培养单位\ \dlmu[9cm]{\UCASTrainingUnit}
+}
+
+\ifucasfullcover
+    \title{\vspace{3cm} \heiti \Huge \textbf{\UCASReportTitle} \par \vspace{1.5cm}}
+    \author{\UCASFullCoverAuthor}
+\else
+    \title{\vspace{3cm} \heiti \Huge \textbf{\UCASCoverTitle} \par
+    \vspace{1cm}
+    \heiti \Large {\underline{\UCASReportTitle}}
+    \vspace{3cm}}
+    \author{\UCASReducedCoverAuthor}
+\fi
+
+\date{\today}
+
+\newcommand{\cover}{
+\begin{figure}
+    \centering
+    \vspace{2cm}
+    \IfFileExists{ucas_logo.pdf}{%
+        \includegraphics[width=0.6\textwidth]{ucas_logo.pdf}%
+    }{%
+        \IfFileExists{figures/ucas_logo.pdf}{%
+            \includegraphics[width=0.6\textwidth]{figures/ucas_logo.pdf}%
+        }{%
+            \IfFileExists{./figures/ucas_logo.pdf}{%
+                \includegraphics[width=0.6\textwidth]{./figures/ucas_logo.pdf}%
+            }{%
+                \vspace{2.2cm}
+            }%
+        }%
+    }
+\end{figure}
+\maketitle
+}
+
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\^\do\_\do\`\do\[\do\]\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m
+\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x
+\do\y\do\z\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8
+\do\9\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]
+\do\)\do\,\do\?\do\'\do+\do\=\do\#\do\%}

@@ -93,6 +93,7 @@
 - Load：
   - `skills/experiment-verifier/SKILL.md`
   - `skills/experiment-diagram-maker/SKILL.md`
+  - `skills/experiment-deliverable-standards/SKILL.md`
   - `skills/experiment-state-tracker/SKILL.md`
 - Outputs：`data_readiness`、`verification_result`、`metrics_summary`、`report_assets`
 
@@ -103,19 +104,32 @@
 - Load：
   - `skills/experiment-report-writer/SKILL.md`
   - `skills/experiment-report-reviewer/SKILL.md`
+  - `skills/experiment-deliverable-standards/SKILL.md`
+  - `skills/experiment-submission-auditor/SKILL.md`
   - `skills/experiment-state-tracker/SKILL.md`
 - Outputs：`report_tex`、`report_pdf`、`report_review`
 
 ### Phase 8：PPT 生成与复核
 
-- Goal：基于已完成报告和证据链生成、导出并复核可编辑 PPT，作为完整实验交付的最后阶段
+- Goal：基于已完成报告和证据链生成、导出并复核可编辑 PPT，作为用户审核前完整实验草稿的最后阶段
 - Inputs：`workflow_state.yaml`、`artifacts_manifest.yaml`、`execution_log.md`、`report_pdf`、`report_assets`
 - Load：
   - `skills/experiment-ppt-writer/SKILL.md`
   - `PPT生成skill/CLAUDE.md`
   - `PPT生成skill/skills/ppt-master/SKILL.md`
+  - `skills/experiment-deliverable-standards/SKILL.md`
+  - `skills/experiment-submission-auditor/SKILL.md`
   - `skills/experiment-state-tracker/SKILL.md`
 - Outputs：`ppt_brief`、`ppt_file`
+
+### Final Sync：用户审核后的最终提交同步
+
+- Goal：仅在用户明确审核通过并要求放入最终提交目录后，同步 `项目提交/实验N/` 并刷新 `项目提交.zip`
+- Inputs：`code/workN code/`、`实验报告/实验N/`、`PPT/实验N/`、用户确认
+- Load：
+  - `skills/experiment-deliverable-standards/SKILL.md`
+  - `skills/experiment-submission-auditor/SKILL.md`
+- Outputs：`项目提交/实验N/`、`项目提交.zip`、`submission_audit`
 
 ## 5. 阶段切换条件
 
@@ -125,7 +139,8 @@
 - Phase 5 完成后，才能进入 Phase 6。
 - Phase 6 通过或阻塞项被如实记录后，才能进入 Phase 7。
 - Phase 7 报告复核通过后，必须进入 Phase 8。
-- Phase 8 完成并登记 PPT 产物后，才可最终交付完整实验任务。
+- Phase 8 完成并登记 PPT 产物后，才可交付给用户审核。
+- 只有用户审核确认后，才能进入 Final Sync 并写入 `项目提交/`。
 
 ## 6. Skill 设计要求
 
